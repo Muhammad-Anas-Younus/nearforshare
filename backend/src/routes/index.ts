@@ -1,5 +1,5 @@
 import express from "express";
-import dropsRoutes from "./drops";
+import dropsRoutes from "./drop.routes";
 
 const router = express.Router();
 
