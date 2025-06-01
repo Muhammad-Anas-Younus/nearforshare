@@ -1,6 +1,7 @@
 # NearForShare
 
-❌ Problem!
+## ❌ Problem!
+
 We’ve all used AirForShare, right? Especially as university students — it’s super handy in labs for quickly sharing things like lab manuals, code files (🙈), or quick notes with friends nearby.
 
 But there’s one big catch…
@@ -11,7 +12,8 @@ You just want a quick, frictionless way to drop a file or some text from one dev
 
 And sure, you could open WhatsApp Web, email, or another messaging app on the lab computer — but that’s a privacy and security risk. Logging into personal accounts on public or shared machines isn’t safe, and most of us know better than to leave our sessions open on lab PCs.
 
-✅ Solution
+## ✅ Solution
+
 NearForShare is a privacy-conscious, network-independent way to share text and files with nearby devices.
 
 Instead of relying on Wi-Fi networks, it uses your device’s approximate location (with your permission) to drop content in a virtual space. Anyone nearby can instantly see and access what you dropped — no shared network, no account login, no hassle.
