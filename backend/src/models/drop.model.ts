@@ -4,10 +4,8 @@ const dropSchema = new mongoose.Schema({
   textContent: { type: String },
   files: { type: String },
   location: {
-    type: {
-      type: { type: String, enum: ["Point"], default: "Point" },
-      coordinates: { type: [Number], required: true },
-    },
+    type: { type: String, enum: ["Point"], default: "Point" },
+    coordinates: { type: [Number], required: true },
   },
   expiresAt: { type: Date, default: () => Date.now() + 1000 * 60 * 60 },
 });

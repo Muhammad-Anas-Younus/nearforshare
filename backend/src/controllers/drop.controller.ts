@@ -1,6 +1,8 @@
 import { Request, Response } from "express";
 import dropModel from "../models/drop.model";
 
+const MAX_DISTANCE = 50;
+
 interface CreateDropRequestBody {
   textContent?: string;
   files?: any;
@@ -12,7 +14,7 @@ interface CreateDropRequestBody {
 export const createDrop = async (
   req: Request<{}, {}, CreateDropRequestBody>,
   res: Response
-) => {
+): Promise<any> => {
   const { textContent, files, location } = req.body;
 
   if (
@@ -52,4 +54,35 @@ export const createDrop = async (
   const savedDrop = await dropModel.create(body);
 
   return res.status(201).json({ success: true, drop: savedDrop });
+};
+
+interface GetNearbyDropsRequestQuery {
+  latitude: string;
+  longitude: string;
+}
+
+export const getNearbyDrops = async (
+  req: Request<{}, {}, {}, GetNearbyDropsRequestQuery>,
+  res: Response
+): Promise<any> => {
+  const { latitude, longitude } = req.query;
+
+  if (!latitude || !longitude) {
+    throw new Error("Bad Request");
+  }
+
+  const drops = await dropModel.find({
+    location: {
+      $near: {
+        $geometry: {
+          type: "Point",
+          coordinates: [parseFloat(longitude), parseFloat(latitude)],
+        },
+        $maxDistance: MAX_DISTANCE, // radius in meters
+      },
+    },
+    expiresAt: { $gt: new Date() }, // only get unexpired drops
+  });
+
+  return res.status(200).json(drops);
 };
