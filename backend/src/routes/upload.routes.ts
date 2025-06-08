@@ -4,6 +4,6 @@ import { uploadFiles } from "../controllers/upload.controller";
 
 const router = express.Router();
 
-router.post("/upload", upload.single("file"), uploadFiles);
+router.post("/upload", upload.array("files"), uploadFiles);
 
 export default router;
