@@ -3,10 +3,13 @@ import { errorHandler } from "./middlewares/errorHandler";
 import allRoutes from "./routes";
 import mongoose from "mongoose";
 import config from "./config/config";
+import cors from "cors";
 
 const app = express();
 
+app.use(cors());
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // Routes
 app.use("/api/v1", allRoutes);
